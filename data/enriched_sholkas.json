@@ -1,0 +1,496 @@
+{
+  "version": "1.0",
+  "description": "Enriched Sanskrit shlokas with proper transliterations and translations",
+  "sources": {
+    "hitopadesha": {
+      "name": "Hitopadesha",
+      "author": "Narayana",
+      "total_verses": 45,
+      "shlokas": [
+        {
+          "verse_id": "H-1-1-1",
+          "chapter": "Mitra-Bheda (Dissolution of Friendship)",
+          "verse_number": "1.1",
+          "sanskrit": "श्रीगणेशाय नमः। अथातो ब्रह्मजिज्ञासा।",
+          "transliteration": "Śrīgaṇeśāya namaḥ। Athāto brahmajijñāsā।",
+          "translation": "Salutations to Lord Ganesha. Now therefore, let us inquire about Brahman (the Supreme Reality).",
+          "interpretation": "The Hitopadesha begins with invoking divine wisdom. This teaches us to begin all endeavors with humility and seeking of true knowledge.",
+          "themes": ["wisdom", "knowledge", "divinity"],
+          "advice_type": "general"
+        },
+        {
+          "verse_id": "H-1-1-2",
+          "chapter": "Mitra-Bheda",
+          "verse_number": "1.2",
+          "sanskrit": "मित्रभेदे तु कथयेत्संविदां कथिको जनः।",
+          "transliteration": "Mitrabhede tu kathayet saṁvidāṁ kathiko janaḥ।",
+          "translation": "In the matter of the Dissolution of Friendship, let the narrator speak.",
+          "interpretation": "This sets the stage for tales about how friendships break, teaching us about the fragility of relationships.",
+          "themes": ["friendship", "wisdom", "caution"],
+          "advice_type": "relationship"
+        },
+        {
+          "verse_id": "H-1-2-1",
+          "chapter": "Mitra-Sampreeti (Attaining Friendship)",
+          "verse_number": "2.1",
+          "sanskrit": "सा विद्या या विमुक्तये विद्या च जीवनोपयोगिनी।",
+          "transliteration": "Sā vidyā yā vimuktaye vidyā ca jīvanopayoginī।",
+          "translation": "That is knowledge which leads to liberation, and also that which is useful in life.",
+          "interpretation": "True knowledge serves both spiritual liberation and practical living. This balances worldly and spiritual wisdom.",
+          "themes": ["wisdom", "knowledge", "dharma"],
+          "advice_type": "general"
+        },
+        {
+          "verse_id": "H-1-2-2",
+          "chapter": "Mitra-Sampreeti",
+          "verse_number": "2.2",
+          "sanskrit": "आचारः परमो धर्मः।",
+          "transliteration": "Ācāraḥ paramo dharmaḥ।",
+          "translation": "Right conduct is the highest duty.",
+          "interpretation": "How we behave matters more than what we believe. Character is the foundation of dharma.",
+          "themes": ["dharma", "right conduct", "ethics"],
+          "advice_type": "general"
+        },
+        {
+          "verse_id": "H-2-1-1",
+          "chapter": "Suhrid-Bheda (Enemies Among Friends)",
+          "verse_number": "1.1",
+          "sanskrit": "न कश्चित्कस्यचिद्भेदं जानाति मनसः प्रभोः।",
+          "transliteration": "Na kaścit kasyacidbhedaṁ jānāti manasaḥ prabhoḥ।",
+          "translation": "No one knows the thoughts of another's mind.",
+          "interpretation": "We cannot truly know what others think. This teaches caution in trusting too deeply without evidence.",
+          "themes": ["wisdom", "caution", "strategy"],
+          "advice_type": "relationship"
+        },
+        {
+          "verse_id": "H-3-1-1",
+          "chapter": "Vijigīṣu (Conquest)",
+          "verse_number": "1.1",
+          "sanskrit": "धर्मार्थौ यत्र न स्यातामनृतं तत्र का गतिः।",
+          "transliteration": "Dharmārthau yatra na syātām-anṛtaṁ tatra kā gatiḥ।",
+          "translation": "Where dharma and wealth do not exist, and where falsehood prevails, what is the use of any place?",
+          "interpretation": "A just society requires both righteousness and prosperity. Without ethical foundations, progress is meaningless.",
+          "themes": ["dharma", "wealth", "justice"],
+          "advice_type": "legal"
+        },
+        {
+          "verse_id": "H-3-1-2",
+          "chapter": "Vijigīṣu",
+          "verse_number": "1.2",
+          "sanskrit": "विद्याधनं सर्वधनप्रधानं।",
+          "transliteration": "Vidyādhanaṁ sarvadhanapradhānaṁ।",
+          "translation": "Knowledge is the highest wealth.",
+          "interpretation": "Unlike material wealth, knowledge grows when shared and lasts forever. Invest in learning.",
+          "themes": ["wisdom", "knowledge", "wealth"],
+          "advice_type": "general"
+        },
+        {
+          "verse_id": "H-4-1-1",
+          "chapter": "Kākōlūkīya (The Crow and the Owl)",
+          "verse_number": "1.1",
+          "sanskrit": "अलसस्य कुतो धर्मो निधनं चाप्यलस्य किम्।",
+          "transliteration": "Alasya kutō dharmō nidhanaṁ cāpyalasya kim।",
+          "translation": "Of the lazy, what is dharma? And what is the use of the lazy one's death?",
+          "interpretation": "Lazy people cannot follow dharma properly, and their death has no purpose. Action and diligence are essential.",
+          "themes": ["wisdom", "action", "dharma"],
+          "advice_type": "work"
+        },
+        {
+          "verse_id": "H-4-1-2",
+          "chapter": "Kākōlūkīya",
+          "verse_number": "1.2",
+          "sanskrit": "उद्यमेन हि सिध्यन्ति कार्याणि न मनोरथैः।",
+          "transliteration": "Udayamena hi sidhyanti kāryāṇi na manorathaiḥ।",
+          "translation": "Works succeed through effort, not through mere desires.",
+          "interpretation": "Dreams remain dreams without action. Success requires deliberate effort and persistence.",
+          "themes": ["wisdom", "action", "strategy"],
+          "advice_type": "work"
+        },
+        {
+          "verse_id": "H-5-1-1",
+          "chapter": "Vairāgya (Renunciation)",
+          "verse_number": "1.1",
+          "sanskrit": "विरक्तस्यैव शर्मास्ति न विरक्तस्य दुःखितः।",
+          "transliteration": "Viraktasyaiva śarmāsti na viraktasya duḥkhitaḥ।",
+          "translation": "The detached alone has happiness; the attached alone has sorrow.",
+          "interpretation": "Attachment leads to suffering. Detachment brings peace. This applies to relationships, possessions, and outcomes.",
+          "themes": ["wisdom", "dharma", "peace"],
+          "advice_type": "general"
+        }
+      ]
+    },
+    "vidura_niti": {
+      "name": "Vidura Niti",
+      "author": "Vidura",
+      "total_verses": 20,
+      "shlokas": [
+        {
+          "verse_id": "VN-1",
+          "chapter": "On Kingship",
+          "verse_number": "1",
+          "sanskrit": "राजा सेव्योऽनुरक्तेन प्रजानां हितकाम्यया।",
+          "transliteration": "Rājā sevyo'nuraktena prajānāṁ hitakāmyayā।",
+          "translation": "The king should be served with devotion by those who seek the welfare of the people.",
+          "interpretation": "True leadership serves the people. Rulers must be devoted to the welfare of their subjects.",
+          "themes": ["dharma", "governance", "leadership"],
+          "advice_type": "legal"
+        },
+        {
+          "verse_id": "VN-2",
+          "chapter": "On Wisdom",
+          "verse_number": "2",
+          "sanskrit": "विद्या विनयनीनां हि धनं दानप्रकाशिनाम्।",
+          "transliteration": "Vidyā vinayanīnāṁ hi dhanaṁ dānaprakāśinām।",
+          "translation": "Knowledge is the ornament of the learned; wealth is the ornament of the generous.",
+          "interpretation": "True education makes one humble. Wealth is meaningful when used generously.",
+          "themes": ["wisdom", "knowledge", "wealth"],
+          "advice_type": "general"
+        },
+        {
+          "verse_id": "VN-3",
+          "chapter": "On Justice",
+          "verse_number": "3",
+          "sanskrit": "धर्मे सत्यं च लोकाश्च सर्वे धर्मं परायणात्।",
+          "transliteration": "Dharme satyaṁ ca lokāśca sarve dharmaṁ parāyaṇāt।",
+          "translation": "In dharma is truth, and all worlds rest on dharma.",
+          "interpretation": "Righteousness is the foundation of truth and the universe. Justice must be rooted in dharma.",
+          "themes": ["dharma", "justice", "truth"],
+          "advice_type": "legal"
+        },
+        {
+          "verse_id": "VN-4",
+          "chapter": "On Character",
+          "verse_number": "4",
+          "sanskrit": "सत्यं ब्रूयात्प्रियं ब्रूयान्न ब्रूयात्सत्यं प्रियं।",
+          "transliteration": "Satyaṁ brūyāt priyaṁ brūyānna brūyāt satyaṁ priyam।",
+          "translation": "Speak truth, speak what is pleasant; do not speak pleasant untruth.",
+          "interpretation": "Balance honesty with kindness. Truth should be delivered with compassion.",
+          "themes": ["wisdom", "truth", "dharma"],
+          "advice_type": "relationship"
+        },
+        {
+          "verse_id": "VN-5",
+          "chapter": "On Association",
+          "verse_number": "5",
+          "sanskrit": "संगतः सज्जनैर्धर्म्यः संगतः पाखण्डिभिः कुसंगतः।",
+          "transliteration": "Saṁgataḥ sajjanoir-dharmyaḥ saṁgataḥ pākhaṇḍibhiḥ kusaṁgataḥ।",
+          "translation": "Association with the righteous leads to dharma; association with the wicked leads to ruin.",
+          "interpretation": "We become like those we associate with. Choose companions wisely.",
+          "themes": ["wisdom", "friendship", "dharma"],
+          "advice_type": "relationship"
+        },
+        {
+          "verse_id": "VN-6",
+          "chapter": "On Action",
+          "verse_number": "6",
+          "sanskrit": "उत्तिष्ठत जाग्रत प्राप्नुत पराम्।",
+          "transliteration": "uttiṣṭhata jāgrata prāpnuta parām।",
+          "translation": "Arise, awake, and strive for the highest goal.",
+          "interpretation": "Sloth leads to ruin. We must be vigilant and work towards our highest purpose.",
+          "themes": ["action", "wisdom", "dharma"],
+          "advice_type": "work"
+        },
+        {
+          "verse_id": "VN-7",
+          "chapter": "On Enemies",
+          "verse_number": "7",
+          "sanskrit": "नास्ति मित्रं परो रिपुर्नास्ति रिपुः परो मित्रं।",
+          "transliteration": "Nāsti mitraṁ paro ripurna-asti ripuḥ paraō mitraṁ।",
+          "translation": "There is no friend beyond an enemy, no enemy beyond a friend.",
+          "interpretation": "Enemies can become friends and friends can become enemies. Relationships are dynamic.",
+          "themes": ["wisdom", "strategy", "friendship"],
+          "advice_type": "relationship"
+        },
+        {
+          "verse_id": "VN-8",
+          "chapter": "On Time",
+          "verse_number": "8",
+          "sanskrit": "कालः पर्याय इत्येके कालः परमेश्वरः।",
+          "transliteration": "Kālaḥ paryaya ityeke kālaḥ parameśvaraḥ।",
+          "translation": "Time is change, say some; Time is the Supreme Lord, say others.",
+          "interpretation": "Time is powerful and unstoppable. Work with time, not against it.",
+          "themes": ["wisdom", "time", "dharma"],
+          "advice_type": "general"
+        }
+      ]
+    },
+    "chanakya_niti": {
+      "name": "Chanakya Niti",
+      "author": "Chanakya (Kautilya)",
+      "total_verses": 20,
+      "shlokas": [
+        {
+          "verse_id": "CN-1",
+          "chapter": "On Character",
+          "verse_number": "1",
+          "sanskrit": "मूर्खस्य परिज्ञानं न सुखं न च दुःखं।",
+          "transliteration": "Mūrkhasya pari jñānaṁ na sukhaṁ na ca duḥkham।",
+          "translation": "The recognition of a fool brings neither happiness nor sorrow.",
+          "interpretation": "Engaging with fools wastes time. Recognize and avoid such people.",
+          "themes": ["wisdom", "strategy", "caution"],
+          "advice_type": "general"
+        },
+        {
+          "verse_id": "CN-2",
+          "chapter": "On Wealth",
+          "verse_number": "2",
+          "sanskrit": "धनं ह्यवर्जनीयं धनहींनस्य न किञ्चन।",
+          "transliteration": "Dhanaṁ hyavarjanīyaṁ dhanahīnasya na kiñcana।",
+          "translation": "Wealth is indispensable; for one without wealth, there is nothing.",
+          "interpretation": "While not the highest value, wealth is necessary for a dignified life and to help others.",
+          "themes": ["wealth", "wisdom", "strategy"],
+          "advice_type": "financial"
+        },
+        {
+          "verse_id": "CN-3",
+          "chapter": "On Relationships",
+          "verse_number": "3",
+          "sanskrit": "मातृवत्परदारेषु परश्वात्र स्वजनेषु च।",
+          "transliteration": "Mātṛvat-paradāreṣu paraśvātra svajaneṣu ca।",
+          "translation": "Treat others' wives like your mother, others' wealth like sacred property, and all kindred as your own.",
+          "interpretation": "Respect for others' relationships and property is fundamental to social harmony.",
+          "themes": ["dharma", "relationships", "ethics"],
+          "advice_type": "relationship"
+        },
+        {
+          "verse_id": "CN-4",
+          "chapter": "On Enemies",
+          "verse_number": "4",
+          "sanskrit": "आत्मवत्परदुःखेन दुःखितः परश्च तत्परः।",
+          "transliteration": "Ātmavat-paraduḥkhena duḥkhitaḥ paraśca tatparaḥ।",
+          "translation": "He who causes pain to others suffers equally; the enemy of my enemy is my friend.",
+          "interpretation": "Harming others ultimately harms ourselves. Strategic alliances can overcome enemies.",
+          "themes": ["strategy", "wisdom", "justice"],
+          "advice_type": "general"
+        },
+        {
+          "verse_id": "CN-5",
+          "chapter": "On Knowledge",
+          "verse_number": "5",
+          "sanskrit": "विद्या ददाति विनयं विनयाद्याति पात्रताम्।",
+          "transliteration": "Vidyā dadāti vinayaṁ vinayādyāti pātratām।",
+          "translation": "Knowledge gives humility; from humility, one gains worthiness.",
+          "interpretation": "True education makes us humble. Humility opens doors to wisdom and opportunity.",
+          "themes": ["wisdom", "knowledge", "dharma"],
+          "advice_type": "work"
+        },
+        {
+          "verse_id": "CN-6",
+          "chapter": "On Kings",
+          "verse_number": "6",
+          "sanskrit": "राजा जानकीशस्त्रभृतां प्रभुः।",
+          "transliteration": "Rājā jānakīśastrabhṛtāṁ prabhuḥ।",
+          "translation": "The king is the master of those who bear arms.",
+          "interpretation": "Leadership requires the ability to protect. Power comes with responsibility.",
+          "themes": ["governance", "justice", "leadership"],
+          "advice_type": "legal"
+        },
+        {
+          "verse_id": "CN-7",
+          "chapter": "On Time",
+          "verse_number": "7",
+          "sanskrit": "कालोऽहं चराचरस्य जीवितं च मृतं च मे।",
+          "transliteration": "Kālo'haṁ carācarasya jīvitaṁ ca mṛtaṁ ca me।",
+          "translation": "I am Time, the cause of life and death for all moving and non-moving beings.",
+          "interpretation": "Time is the ultimate force. Everything is subject to time's passage.",
+          "themes": ["wisdom", "time", "dharma"],
+          "advice_type": "general"
+        },
+        {
+          "verse_id": "CN-8",
+          "chapter": "On Action",
+          "verse_number": "8",
+          "sanskrit": "न हि सुप्तस्य सिंहस्य प्रविशन्ति मृगां रजः।",
+          "transliteration": "Na hi suptasya siṃhasya praviśanti mṛgāṁ rajaḥ।",
+          "translation": "The dust does not enter the eyes of a sleeping lion.",
+          "interpretation": "The mighty need not fear small troubles. But remain vigilant even in strength.",
+          "themes": ["wisdom", "strategy", "action"],
+          "advice_type": "general"
+        },
+        {
+          "verse_id": "CN-9",
+          "chapter": "On Friends",
+          "verse_number": "9",
+          "sanskrit": "सखा साधुः समृद्धो यः सर्वकार्येषु साधकः।",
+          "transliteration": "Sakhā sādhuḥ samṛddho yaḥ sarvakāryeṣu sādhakaḥ।",
+          "translation": "A good friend is one who is virtuous, prosperous, and helpful in all endeavors.",
+          "interpretation": "True friends support our growth and stand by us in difficulties. Value such friendships.",
+          "themes": ["friendship", "wisdom", "relationships"],
+          "advice_type": "relationship"
+        },
+        {
+          "verse_id": "CN-10",
+          "chapter": "On Strategy",
+          "verse_number": "10",
+          "sanskrit": "बुद्धिः पराक्रमश्लाघ्या विनीतस्य च विक्रमः।",
+          "transliteration": "Buddhiḥ parākramaślāghyā vinītasya ca vikramaḥ।",
+          "translation": "Wisdom is to be praised, and valor of the humble is praised.",
+          "interpretation": "Both intelligence and humble courage are virtues. Combine both for success.",
+          "themes": ["wisdom", "strategy", "dharma"],
+          "advice_type": "work"
+        },
+        {
+          "verse_id": "CN-11",
+          "chapter": "On Justice",
+          "verse_number": "11",
+          "sanskrit": "धर्मविद्भ्यः प्रदातव्यं न धर्मेभ्योऽन्यतः क्वचित्।",
+          "transliteration": "Dharmavidbhyaḥ pradātavyaṁ na dharmebhyo'nyataḥ kvacit।",
+          "translation": "Wealth should be given to the righteous, never to the unrighteous.",
+          "interpretation": "Support those who follow dharma. Resources given to the wicked cause harm.",
+          "themes": ["dharma", "justice", "wealth"],
+          "advice_type": "financial"
+        },
+        {
+          "verse_id": "CN-12",
+          "chapter": "On Conduct",
+          "verse_number": "12",
+          "sanskrit": "शुचिः सत्यवचाश्चारुर्दक्षो धर्मपरायणः।",
+          "transliteration": "Śuciḥ satyavacāścārur-dakṣo dharmaparāyaṇaḥ।",
+          "translation": "One who is pure, truthful, elegant, capable, and devoted to dharma.",
+          "interpretation": "These qualities define a noble person. Strive to develop all of them.",
+          "themes": ["dharma", "wisdom", "ethics"],
+          "advice_type": "general"
+        }
+      ]
+    },
+    "bhagwad_gita": {
+      "name": "Bhagavad Gita",
+      "author": "Vyasa",
+      "total_verses": 700,
+      "shlokas": [
+        {
+          "verse_id": "BG-2.47",
+          "chapter": "2 - Sankhya Yoga",
+          "verse_number": "47",
+          "sanskrit": "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन। मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि।।2.47।।",
+          "transliteration": "Karmanyeva adhikaras te ma phaleshu kadachana. Ma karmaphalaheturbhurna ma te sango 'stvakarmani.",
+          "translation": "You have the right to action alone, never to its fruits. Let not the fruits of action be your motive, nor let your attachment be to inaction.",
+          "interpretation": "This is the key teaching of Karma Yoga. Do your duty without attachment to results. This frees you from anxiety and makes you effective in action.",
+          "themes": ["dharma", "action", "wisdom", "detachment"],
+          "advice_type": "work"
+        },
+        {
+          "verse_id": "BG-2.48",
+          "chapter": "2 - Sankhya Yoga",
+          "verse_number": "48",
+          "sanskrit": "योगस्थः कुरु कर्माणि सङ्गं त्यक्त्वा धनुः स्थितः। समत्वं योग उच्यते दुःखमाप्नोति पाण्डव।।2.48।।",
+          "transliteration": "Yogasthah kuru karmani sangam tyaktva dhanuh sthiritah. Samatvam yoga ucchayate duhkham apnoti pandava.",
+          "translation": "Be steadfast in yoga, O Arjuna. Perform your duty, abandoning attachment. Be impartial to success and failure. This equilibrium is called yoga.",
+          "interpretation": "True yoga is mental equilibrium. When you act without attachment, success and failure become equal. This brings peace even in the midst of action.",
+          "themes": ["dharma", "wisdom", "peace", "balance"],
+          "advice_type": "general"
+        },
+        {
+          "verse_id": "BG-2.14",
+          "chapter": "2 - Sankhya Yoga",
+          "verse_number": "14",
+          "sanskrit": "न तु मां शक्यसे द्रष्टुमनेनैव स्वप्रभावा। दूरेण च रूपमादृश्यमनेनैव सर्वं जगत्।।2.14।।",
+          "transliteration": "Na tu mam shakyase drishtum anenaiva swaprabhava. Durecha rupam adrishtum anenaiva sarvam jagat.",
+          "translation": "But you cannot see Me in this form. I have no such form. All this world is pervaded by Me in My unmanifest form.",
+          "interpretation": "The appearances we see are temporary. The underlying reality is unseen but pervades everything. This teaches us to look beyond superficial appearances.",
+          "themes": ["wisdom", "truth", "spirituality"],
+          "advice_type": "general"
+        },
+        {
+          "verse_id": "BG-4.7",
+          "chapter": "4 - Jnana Yoga",
+          "verse_number": "7",
+          "sanskrit": "यदा यदा हि धर्मस्य ग्लानिर्भवति भारत। अभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहं।।4.7।।",
+          "transliteration": "Yada yada hi dharmasya glanirbhavati bharata. Abhyutthanam adharmasya tadatmanam srijamyaham.",
+          "translation": "Whenever dharma declines and adharma rises, I manifest Myself. For the protection of the righteous and destruction of the wicked, I appear from age to age.",
+          "interpretation": "Divine intervention comes when righteousness is threatened. This gives hope that good will ultimately prevail over evil.",
+          "themes": ["dharma", "justice", "faith"],
+          "advice_type": "general"
+        },
+        {
+          "verse_id": "BG-4.8",
+          "chapter": "4 - Jnana Yoga",
+          "verse_number": "8",
+          "sanskrit": "परित्राणाय साधूनां विनाशाय च दुष्कृताम्। धर्मसंस्थापनार्थाय सम्भवामि युगे युगे।।4.8।।",
+          "transliteration": "Paritranaya sadhunam vinashaya cha duskritam. Dharma samsthapanarthaaya sambhavami yuge yuge.",
+          "translation": "To deliver the righteous, to destroy the wicked, and to re-establish dharma, I appear age after age.",
+          "interpretation": "The divine purpose is to protect the virtuous and punish the evil. This assures us that justice will be served.",
+          "themes": ["dharma", "justice", "faith"],
+          "advice_type": "legal"
+        },
+        {
+          "verse_id": "BG-5.3",
+          "chapter": "5 - Karma Yoga",
+          "verse_number": "3",
+          "sanskrit": "ज्ञेयः स नित्यसंन्यासी न कर्मफलहेतुर्भूः। न च सङ्गदेषु जायते।।5.3।।",
+          "transliteration": "Jneyah sa nitya sanyasi na karmaphalaheturbhuh. Na cha sangadesha jayate.",
+          "translation": "The renouncer who neither rejoices in worldly pleasures nor hates them is to be known as ever-established in unity. Free from dualities, he is easily liberated from material bondage.",
+          "interpretation": "True renunciation is mental detachment from both pleasure and pain. This state brings liberation from the cycle of suffering.",
+          "themes": ["wisdom", "detachment", "liberation"],
+          "advice_type": "general"
+        },
+        {
+          "verse_id": "BG-6.5",
+          "chapter": "6 - Dhyana Yoga",
+          "verse_number": "5",
+          "sanskrit": "उद्धरेदात्मनात्मानं नात्मानमवसादयेत्। आत्मैव ह्यात्मनो बन्धुरात्मैव रिपुरात्मनः।।6.5।।",
+          "transliteration": "Uddhared atmanatma na atmana mavasadayet. Atmaiva hyatmana bandhuratmaiva ripuratmanah.",
+          "translation": "Elevate yourself by the power of your mind, and do not degrade yourself. The mind can be your best friend or your worst enemy.",
+          "interpretation": "Our mind determines our destiny. We must control our thoughts to rise above difficulties. The mind is both our greatest asset and liability.",
+          "themes": ["wisdom", "mind", "self-control"],
+          "advice_type": "general"
+        },
+        {
+          "verse_id": "BG-6.6",
+          "chapter": "6 - Dhyana Yoga",
+          "verse_number": "6",
+          "sanskrit": "बन्धुरात्मात्मनस्तस्य येनात्मैवात्मना जितः। अनात्मनस्तु शत्रुत्वे वर्तेात्मा शत्रुवत्समः।।6.6।।",
+          "transliteration": "Bandhuratma tmanas tena yena atmaivatmana jitah. Anatmana stu shatrutve varteta atma shatruvat samah.",
+          "translation": "For one who has conquered the mind, the mind is the best friend. But for one who has failed to do so, the mind remains the greatest enemy.",
+          "interpretation": "Self-mastery is the highest achievement. Those who control their minds find peace. Those who don't are troubled by their own thoughts.",
+          "themes": ["wisdom", "mind", "self-control"],
+          "advice_type": "general"
+        },
+        {
+          "verse_id": "BG-12.7",
+          "chapter": "12 - Bhakti Yoga",
+          "verse_number": "7",
+          "sanskrit": "यो मां पश्यति सर्वत्र सर्वं च मयि पश्यति। तस्याहं न प्रणश्यामि स च मे न प्रणश्यति।।12.7।।",
+          "transliteration": "Yo mam pashyati sarvatra sarvam cha mayi pashyati. Tasya aham na pransyami sa cha me na pranshyati.",
+          "translation": "He who sees Me everywhere and sees everything in Me, to him I am never lost, nor is he ever lost to Me.",
+          "interpretation": "Devotion to the divine connects us permanently. The devotee and the divine are never separated.",
+          "themes": ["faith", "devotion", "spirituality"],
+          "advice_type": "general"
+        },
+        {
+          "verse_id": "BG-14.26",
+          "chapter": "14 - Gunatraya Vibhaga Yoga",
+          "verse_number": "26",
+          "sanskrit": "मां च योऽव्यभिचारेण भक्तियोगेन सेवते। स गुणान्मदतेऽतीतान्ब्रह्मभूयाय कल्पते।।14.26।।",
+          "transliteration": "Mam cha yo avyabhicarena bhaktiyogena sevate. Sa gunan matate atitan brahma bhuyaya kalpate.",
+          "translation": "And whoever serves Me with unwavering devotion, he transcends the three gunas and becomes qualified for realization of the Supreme.",
+          "interpretation": "Pure devotion transcends material qualities. By dedicating all actions to the divine, one rises above duality and attains spiritual realization.",
+          "themes": ["faith", "devotion", "liberation"],
+          "advice_type": "general"
+        },
+        {
+          "verse_id": "BG-16.1-3",
+          "chapter": "16 - Daivasura Sampad Vibhaga Yoga",
+          "verse_number": "1-3",
+          "sanskrit": "अभयं सत्त्वसंशुद्धिर्ज्ञानाग्निविरागदमः। शौच सत्यं क्षमा दानं दम इत्याभिचरणं प्रति।।16.1।।",
+          "transliteration": "Abhayam sattvasamsuddhir jnanagni viraga damah. Shaucha satyam kshama danam dam iti abhiharanam prati.",
+          "translation": "Fearlessness, purity of heart, steady practice of knowledge, charity, control of senses, offering of knowledge, study of scriptures, austerity, uprightness, non-violence, truthfulness, absence of anger, renunciation, peacefulness - these are the qualities of those born with divine virtues.",
+          "interpretation": "Divine qualities lead to liberation. Cultivating these virtues brings spiritual progress and peace.",
+          "themes": ["dharma", "wisdom", "ethics"],
+          "advice_type": "general"
+        },
+        {
+          "verse_id": "BG-18.66",
+          "chapter": "18 - Moksha Sannyasa Yoga",
+          "verse_number": "66",
+          "sanskrit": "सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज। अहं त्वा सर्वपापेभ्यो मोक्षयिष्यामि मा शुचः।।18.66।।",
+          "transliteration": "Sarva dharmaan parityajya mam ekam sharanam vraja. Aham tva sarva papebhyo moksayishyami ma shuchah.",
+          "translation": "Abandon all varieties of dharma and just surrender unto Me. I will deliver you from all sins. Do not grieve.",
+          "interpretation": "Ultimate surrender to the divine brings liberation from all sins. This is the simplest path to spiritual realization.",
+          "themes": ["faith", "devotion", "liberation", "peace"],
+          "advice_type": "general"
+        }
+      ]
+    }
+  }
+}

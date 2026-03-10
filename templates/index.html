@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naya Mitra — Spiritual Wisdom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #d4a017;
+      --gold-dim: rgba(212,160,23,0.25);
+      --bg: #0a0400;
+      --text: #f0e2c0;
+      --text-dim: rgba(240,226,192,0.5);
+    }
+
+    body {
+      height: 100dvh;
+      display: flex; flex-direction: column;
+      background: radial-gradient(ellipse at 20% 10%, #1f0900 0%, #0a0400 50%, #000 100%);
+      font-family: 'EB Garamond', Georgia, serif;
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    /* ambient rings */
+    .ring { position:fixed; border-radius:50%; border:1px solid var(--gold-dim); pointer-events:none; }
+    .r1 { width:700px;height:700px; top:-300px;right:-300px; opacity:.3; }
+    .r2 { width:500px;height:500px; top:-200px;right:-200px; opacity:.18; }
+    .r3 { width:900px;height:900px; bottom:-420px;left:-420px; opacity:.12; }
+
+    /* ── Header ── */
+    header {
+      flex-shrink: 0; text-align:center;
+      padding: 22px 20px 16px;
+      border-bottom: 1px solid var(--gold-dim);
+      background: linear-gradient(to bottom, rgba(20,6,0,.92), transparent);
+      position: relative; z-index:10;
+    }
+    header .lotus { font-size:26px; display:block; margin-bottom:5px; }
+    header h1 {
+      font-family:'Cinzel',serif; font-weight:500;
+      font-size: clamp(16px,3vw,24px);
+      letter-spacing:.18em; color:var(--gold);
+      text-shadow: 0 0 24px rgba(212,160,23,.5);
+    }
+    header p { margin-top:4px; font-size:10px; letter-spacing:.2em; text-transform:uppercase; color:var(--text-dim); }
+    .tags { display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin-top:10px; }
+    .tag { font-size:9px; letter-spacing:.1em; color:rgba(212,160,23,.55);
+           border:1px solid rgba(212,160,23,.18); padding:2px 9px; border-radius:20px; }
+
+    /* provider badge */
+    #provider-badge {
+      display:none; font-size:9px; letter-spacing:.1em; text-transform:uppercase;
+      color:rgba(212,160,23,.45); margin-top:6px;
+    }
+
+    /* ── Chat ── */
+    #chat {
+      flex:1; overflow-y:auto; padding:20px 16px 12px;
+      max-width:760px; width:100%; margin:0 auto;
+      display:flex; flex-direction:column; gap:18px;
+      position:relative; z-index:10;
+      scroll-behavior:smooth;
+    }
+    #chat::-webkit-scrollbar { width:3px; }
+    #chat::-webkit-scrollbar-thumb { background:rgba(212,160,23,.2); border-radius:2px; }
+
+    .msg { display:flex; gap:10px; align-items:flex-start; animation:fadeUp .4s ease; }
+    .msg.user { flex-direction:row-reverse; }
+
+    .avatar {
+      flex-shrink:0; width:32px; height:32px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:14px; border:1px solid var(--gold-dim);
+    }
+    .msg.assistant .avatar { background:rgba(212,160,23,.08); box-shadow:0 0 10px rgba(212,160,23,.15); }
+    .msg.user      .avatar { background:rgba(55,22,0,.6); }
+
+    .bubble { max-width:86%; padding:13px 17px; line-height:1.82; font-size:15.5px; }
+    .msg.assistant .bubble {
+      background: linear-gradient(135deg,rgba(22,8,0,.92),rgba(12,4,0,.96));
+      border:1px solid rgba(212,160,23,.2);
+      border-radius:4px 13px 13px 13px;
+      box-shadow:0 4px 18px rgba(0,0,0,.4), inset 0 1px 0 rgba(212,160,23,.07);
+    }
+    .msg.user .bubble {
+      background:linear-gradient(135deg,rgba(55,22,0,.75),rgba(38,14,0,.85));
+      border:1px solid rgba(212,160,23,.17);
+      border-radius:13px 4px 13px 13px;
+    }
+
+    /* typing dots */
+    .typing { display:flex; gap:5px; align-items:center; padding:15px 18px; }
+    .dot { width:6px;height:6px;border-radius:50%;background:var(--gold);opacity:.6;animation:bounce 1.2s infinite; }
+    .dot:nth-child(2){animation-delay:.18s;} .dot:nth-child(3){animation-delay:.36s;}
+
+    /* suggestions */
+    #suggestions { display:flex; flex-direction:column; gap:7px; }
+    #suggestions p { font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--text-dim);text-align:center;margin-bottom:2px; }
+    .sug {
+      background:rgba(212,160,23,.05); border:1px solid rgba(212,160,23,.14);
+      color:rgba(240,226,192,.6); padding:9px 14px; border-radius:10px;
+      cursor:pointer; font-family:'EB Garamond',serif; font-size:14.5px;
+      text-align:left; transition:all .2s;
+    }
+    .sug:hover { background:rgba(212,160,23,.11); border-color:rgba(212,160,23,.32); color:var(--text); }
+
+    /* ── Input area ── */
+    #input-area {
+      flex-shrink:0; z-index:10;
+      padding:12px 16px 16px;
+      background:linear-gradient(to top,rgba(6,2,0,.98) 70%,transparent);
+      max-width:760px; width:100%; margin:0 auto;
+    }
+
+    .input-wrap {
+      display:flex; gap:9px; align-items:flex-end;
+      background:rgba(16,6,0,.88);
+      border:1px solid rgba(212,160,23,.26);
+      border-radius:15px; padding:9px 11px;
+      backdrop-filter:blur(12px);
+      transition:border-color .2s;
+    }
+    .input-wrap:focus-within { border-color:rgba(212,160,23,.48); }
+
+    /* mic button */
+    #mic-btn {
+      flex-shrink:0; background:none;
+      border:1px solid rgba(212,160,23,.2); border-radius:9px;
+      width:36px;height:36px; cursor:pointer; font-size:15px;
+      color:var(--text-dim); transition:all .2s;
+      display:flex;align-items:center;justify-content:center;
+    }
+    #mic-btn:hover        { border-color:var(--gold); color:var(--gold); }
+    #mic-btn.recording    { border-color:var(--gold); color:var(--gold); background:rgba(212,160,23,.1); animation:pulse 1s infinite; }
+    #mic-btn.processing   { border-color:rgba(212,160,23,.4); color:rgba(212,160,23,.5); cursor:wait; }
+
+    textarea {
+      flex:1; background:transparent; border:none; outline:none;
+      color:var(--text); font-family:'EB Garamond',serif;
+      font-size:15.5px; line-height:1.6; resize:none;
+      padding:3px; min-height:28px; max-height:120px;
+    }
+    textarea::placeholder { color:var(--text-dim); }
+
+    #send-btn {
+      flex-shrink:0;
+      background:linear-gradient(135deg,#d4a017,#b8860b);
+      border:none; border-radius:9px; width:36px;height:36px;
+      cursor:pointer; font-size:16px;
+      box-shadow:0 0 12px rgba(212,160,23,.3);
+      transition:all .2s;
+      display:flex;align-items:center;justify-content:center;
+    }
+    #send-btn:disabled { background:rgba(212,160,23,.14); box-shadow:none; cursor:not-allowed; }
+    #send-btn:not(:disabled):hover { box-shadow:0 0 20px rgba(212,160,23,.55); }
+
+    /* status line */
+    #status-line {
+      min-height:16px; text-align:center; margin-top:7px;
+      font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+      color:var(--gold); display:none;
+    }
+
+    .action-bar { display:flex;justify-content:center;gap:11px;margin-top:8px; }
+    .act-btn {
+      background:none; border:1px solid rgba(212,160,23,.14);
+      color:var(--text-dim); font-family:'EB Garamond',serif;
+      font-size:11px; letter-spacing:.07em;
+      padding:4px 13px; border-radius:20px; cursor:pointer; transition:all .2s;
+    }
+    .act-btn:hover { border-color:rgba(212,160,23,.38); color:var(--gold); }
+
+    .hint { text-align:center;margin-top:7px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(240,226,192,.18); }
+
+    /* tts playing indicator */
+    .playing-icon { display:none; color:var(--gold); font-size:12px; margin-left:6px; animation:fadeIn .3s; }
+    .playing .playing-icon { display:inline; }
+
+    @keyframes fadeUp  { from{opacity:0;transform:translateY(9px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes bounce  { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-6px)} }
+    @keyframes pulse   { 0%,100%{box-shadow:0 0 0 0 rgba(212,160,23,.45)} 50%{box-shadow:0 0 0 5px rgba(212,160,23,0)} }
+    @keyframes fadeIn  { from{opacity:0} to{opacity:1} }
+
+    /* ── Structured response sections ── */
+    .section-header {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 11.5px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border-bottom: 1px solid rgba(212,160,23,.2);
+      padding-bottom: 4px;
+      margin: 14px 0 7px;
+    }
+    .bubble ul {
+      margin: 6px 0 6px 16px;
+      padding: 0;
+    }
+    .bubble li {
+      margin-bottom: 4px;
+      line-height: 1.7;
+    }
+    .bubble hr {
+      border: none;
+      border-top: 1px solid rgba(212,160,23,.15);
+      margin: 12px 0;
+    }
+    .bubble strong { color: rgba(240,226,192,.95); }
+    .bubble em     { color: rgba(212,160,23,.8); font-style: italic; }
+  </style>
+</head>
+<body>
+
+<div class="ring r1"></div>
+<div class="ring r2"></div>
+<div class="ring r3"></div>
+
+<header>
+  <span class="lotus">🪷</span>
+  <h1>NAYA MITRA</h1>
+  <p>Spiritual Wisdom · Ancient India</p>
+  <div class="tags">
+    <span class="tag">Bhagavad Gita</span>
+    <span class="tag">Hitopadesha</span>
+    <span class="tag">Vidura Niti</span>
+    <span class="tag">Chanakya Niti</span>
+  </div>
+  <div id="provider-badge">powered by <span id="provider-name">groq</span></div>
+</header>
+
+<div id="chat">
+  <div class="msg assistant">
+    <div class="avatar">🪷</div>
+    <div class="bubble">
+      Namaste, dear seeker. I am Naya Mitra — your companion on the path of wisdom. I draw from the timeless teachings of the Bhagavad Gita, Hitopadesha, Vidura Niti, and Chanakya Niti. Share what weighs upon your heart, and together we shall find the light of dharma.
+    </div>
+  </div>
+
+  <div id="suggestions">
+    <p>Begin with a question</p>
+    <button class="sug" onclick="useSug(this)">"I feel lost and without purpose in life"</button>
+    <button class="sug" onclick="useSug(this)">"How do I deal with betrayal from a close friend?"</button>
+    <button class="sug" onclick="useSug(this)">"I'm facing financial hardship and feel hopeless"</button>
+    <button class="sug" onclick="useSug(this)">"How do I stay calm in the face of injustice?"</button>
+    <button class="sug" onclick="useSug(this)">"I have a difficult career decision to make"</button>
+  </div>
+</div>
+
+<div id="input-area">
+  <div class="input-wrap">
+    <button id="mic-btn" title="Hold to record voice" onclick="toggleMic()">🎙️</button>
+    <textarea id="msg" rows="1" placeholder="Share what weighs upon your heart…"
+      onkeydown="handleKey(event)" oninput="onInput(this)"></textarea>
+    <button id="send-btn" onclick="sendMessage()" disabled>🪷</button>
+  </div>
+  <div id="status-line"></div>
+  <div class="action-bar">
+    <button class="act-btn" onclick="downloadLog()">⬇ Save Chat</button>
+    <button class="act-btn" onclick="resetChat()">✦ New Conversation</button>
+    <button class="act-btn" id="tts-toggle" onclick="toggleTTS()">🔊 Voice On</button>
+  </div>
+  <p class="hint">Enter · Shift+Enter for new line · 🎙️ for voice input</p>
+</div>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>
