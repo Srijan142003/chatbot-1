@@ -1,7 +1,7 @@
 """
 Naya Mitra AI — Spiritual Advisory Engine (RAG Edition)
 ────────────────────────────────────────────────────────
-Chat  → Gemini (gemini-flash-latest) via REST + RAG retrieval
+Chat  → Gemini (gemini-2.5-flash) via REST + RAG retrieval
 RAG   → TF-IDF retrieval from Bhagavad Gita, Hitopadesha,
          Vidura Niti, Chanakya Niti datasets
 STT   → Browser Web Speech API      (no server-side)
@@ -31,11 +31,64 @@ LOGS_DIR.mkdir(exist_ok=True)
 logging.basicConfig(level=logging.INFO, format="%(levelname)s  %(message)s")
 log = logging.getLogger(__name__)
 
-GEMINI_API_KEY = os.environ["GEMINI_API_KEY"]
-GEMINI_URL = (
-    "https://generativelanguage.googleapis.com/v1beta/models/"
-    f"gemini-2.5-flash-lite:generateContent?key={GEMINI_API_KEY}"
-)
+GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "").strip()
+GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/models"
+GEMINI_MODELS = [
+    m.strip()
+    for m in os.environ.get(
+        "GEMINI_MODELS",
+        "gemini-2.5-flash,gemini-2.0-flash,gemini-2.0-flash-lite",
+    ).split(",")
+    if m.strip()
+]
+_AVAILABLE_GEMINI_MODELS = None
+
+
+def discover_gemini_models() -> set[str]:
+    """Return API-available model IDs that support generateContent."""
+    global _AVAILABLE_GEMINI_MODELS
+    if _AVAILABLE_GEMINI_MODELS is not None:
+        return _AVAILABLE_GEMINI_MODELS
+
+    _AVAILABLE_GEMINI_MODELS = set()
+    try:
+        r = httpx.get(
+            GEMINI_BASE_URL,
+            headers={"x-goog-api-key": GEMINI_API_KEY},
+            params={"pageSize": 1000},
+            timeout=20,
+        )
+        r.raise_for_status()
+        models = r.json().get("models", [])
+        for m in models:
+            methods = m.get("supportedGenerationMethods", [])
+            name = (m.get("name") or "").replace("models/", "")
+            if name and "generateContent" in methods:
+                _AVAILABLE_GEMINI_MODELS.add(name)
+    except Exception as e:
+        log.warning("Could not discover Gemini models: %s", e)
+
+    return _AVAILABLE_GEMINI_MODELS
+
+
+def model_attempt_order() -> list[str]:
+    available = discover_gemini_models()
+    if not available:
+        return GEMINI_MODELS
+
+    preferred = [m for m in GEMINI_MODELS if m in available]
+    if preferred:
+        return preferred
+
+    flash_models = sorted([m for m in available if "flash" in m])
+    if flash_models:
+        log.warning(
+            "Configured models unavailable for this key. Using discovered flash models: %s",
+            ", ".join(flash_models[:5]),
+        )
+        return flash_models
+
+    return sorted(available)
 
 # ── System prompt ──────────────────────────────────────────────────────────────
 SYSTEM_PROMPT = """You are Naya Mitra — a warm, wise spiritual advisor and philosophical guide rooted in four sacred ancient Indian wisdom texts: the Bhagavad Gita, Hitopadesha, Vidura Niti, and Chanakya Niti.
@@ -82,6 +135,9 @@ IMPORTANT RULES:
 # ══════════════════════════════════════════════════════════════════════════════
 
 def chat_gemini(history: list, user_msg: str) -> str:
+    if not GEMINI_API_KEY:
+        raise RuntimeError("GEMINI_API_KEY is not set")
+
     # Retrieve relevant passages from knowledge base
     passages = retrieve(user_msg, top_k=4)
     kb_context = format_passages_for_prompt(passages)
@@ -114,9 +170,39 @@ def chat_gemini(history: list, user_msg: str) -> str:
         "contents": contents,
         "generationConfig": {"maxOutputTokens": 8192, "temperature": 0.7},
     }
-    r = httpx.post(GEMINI_URL, json=payload, timeout=45)
-    r.raise_for_status()
-    candidate = r.json()["candidates"][0]
+    candidate = None
+    last_error = None
+
+    for model in model_attempt_order():
+        try:
+            url = f"{GEMINI_BASE_URL}/{model}:generateContent"
+            r = httpx.post(
+                url,
+                headers={"x-goog-api-key": GEMINI_API_KEY},
+                json=payload,
+                timeout=45,
+            )
+            r.raise_for_status()
+            candidate = r.json()["candidates"][0]
+            break
+        except httpx.HTTPStatusError as e:
+            # Keep trying fallback models for access / model issues.
+            if e.response.status_code in (400, 403, 404):
+                last_error = e
+                log.warning(
+                    "Gemini model '%s' failed with %s; trying fallback if available",
+                    model,
+                    e.response.status_code,
+                )
+                continue
+            raise
+
+    if candidate is None and last_error is not None:
+        raise last_error
+
+    if candidate is None:
+        raise RuntimeError("No Gemini models configured")
+
     text = candidate["content"]["parts"][0]["text"]
     # If the model was still cut off despite the large token budget, close gracefully
     if candidate.get("finishReason") == "MAX_TOKENS" and not text.rstrip().endswith((".", "।", "—", "*")):
@@ -176,6 +262,19 @@ def api_chat():
 
     try:
         reply = chat_gemini(history, user_msg)
+    except httpx.HTTPStatusError as e:
+        status = e.response.status_code
+        log.error("Gemini HTTP error %s: %s", status, e)
+        if status == 403:
+            body = (e.response.text or "").lower()
+            if "reported as leaked" in body or "api key was reported as leaked" in body:
+                return jsonify({
+                    "error": "Gemini blocked this key as leaked. Generate a new API key in Google AI Studio, update GEMINI_API_KEY in your .env, and restart the server.",
+                }), 503
+            return jsonify({
+                "error": "Gemini access denied (403). Check GEMINI_API_KEY, ensure the Generative Language API is enabled, and verify key restrictions/model access.",
+            }), 503
+        return jsonify({"error": "Could not reach the wisdom engine. Please try again."}), 503
     except Exception as e:
         log.error("Gemini error: %s", e)
         return jsonify({"error": "Could not reach the wisdom engine. Please try again."}), 503

@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   Naya Mitra — Frontend
+  Dharma Upadeshak — Frontend
    Chat  → POST /api/chat  (Gemini on server)
    STT   → Browser Web Speech API  (SpeechRecognition)
    TTS   → Browser Web Speech API  (SpeechSynthesis)
@@ -74,7 +74,8 @@ async function sendMessage() {
     if (ttsEnabled) speak(data.reply);
 
   } catch (err) {
-    appendBubble("assistant", "The connection was interrupted. Please try again.");
+    const msg = (err && err.message) ? err.message : "The connection was interrupted. Please try again.";
+    appendBubble("assistant", msg);
   } finally {
     setLoading(false);
   }
@@ -242,7 +243,7 @@ function downloadLog() {
   const blob = new Blob([JSON.stringify(chatLog, null, 2)], { type: "application/json" });
   const a    = document.createElement("a");
   a.href     = URL.createObjectURL(blob);
-  a.download = `naya-mitra-${ts}.json`;
+  a.download = `dharma-upadeshak-${ts}.json`;
   a.click();
 }
 
@@ -255,7 +256,7 @@ async function resetChat() {
   chatEl.innerHTML = `
     <div class="msg assistant">
       <div class="avatar">🪷</div>
-      <div class="bubble">Namaste, dear seeker. I am Naya Mitra — your companion on the path of wisdom. Share what weighs upon your heart, and together we shall find the light of dharma.</div>
+      <div class="bubble">Namaste, dear seeker. I am Dharma Upadeshak — your companion on the path of wisdom. Share what weighs upon your heart, and together we shall find the light of dharma.</div>
     </div>
     <div id="suggestions">
       <p>Begin with a question</p>

@@ -1,10 +1,10 @@
-# Naya Mitra AI — Flask Web App
+# Dharma Upadeshak — Flask Web App
 
 ## Architecture
 
 | Purpose | Provider |
 |---|---|
-| 💬 Chat / Wisdom | **Gemini** `gemini-1.5-flash` (REST API) |
+| 💬 Chat / Wisdom | **Gemini** `gemini-2.5-flash` (REST API) |
 | 🎙️ Voice Input (STT) | **Browser** `SpeechRecognition` API — free, no key needed |
 | 🔊 Voice Output (TTS) | **Browser** `SpeechSynthesis` API — free, no key needed |
 | 💾 Chat Logs | Server-side JSONL in `/logs` |
@@ -21,7 +21,13 @@ source venv/bin/activate       # Windows: venv\Scripts\activate
 # 2. Install dependencies  (only 4 packages!)
 pip install -r requirements.txt
 
-# 3. Run — Gemini key is already in .env
+# 3. Set your Gemini key
+export GEMINI_API_KEY="your_api_key_here"
+
+# Optional: model preference + fallback order
+export GEMINI_MODELS="gemini-2.5-flash,gemini-2.0-flash,gemini-2.0-flash-lite"
+
+# 4. Run
 python app.py
 # Open http://localhost:5000
 ```
@@ -35,11 +41,11 @@ gunicorn -c gunicorn.conf.py app:app
 ## Project Structure
 
 ```
-naya-mitra-v2/
+chatbot-1/
 ├── app.py              # Flask backend — Gemini chat + session + logs
 ├── gunicorn.conf.py    # Production server config
 ├── requirements.txt    # flask, httpx, python-dotenv, gunicorn
-├── .env                # GEMINI_API_KEY lives here
+├── .env                # Optional local env file (auto-loaded by python-dotenv)
 ├── logs/               # Auto-created — JSONL chat logs per session
 ├── templates/
 │   └── index.html
