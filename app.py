@@ -25,11 +25,42 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "naya-mitra-change-me")
 
-LOGS_DIR = Path(__file__).parent / "logs"
-LOGS_DIR.mkdir(exist_ok=True)
-
 logging.basicConfig(level=logging.INFO, format="%(levelname)s  %(message)s")
 log = logging.getLogger(__name__)
+
+
+def resolve_logs_dir() -> Path | None:
+    """Pick a writable logs directory, falling back to /tmp on read-only hosts."""
+    candidates = []
+
+    env_logs_dir = os.environ.get("LOGS_DIR", "").strip()
+    if env_logs_dir:
+        candidates.append(Path(env_logs_dir))
+
+    candidates.extend([
+        Path(__file__).parent / "logs",
+        Path("/tmp/naya-mitra-logs"),
+    ])
+
+    for candidate in candidates:
+        try:
+            candidate.mkdir(parents=True, exist_ok=True)
+            probe = candidate / ".write_test"
+            with open(probe, "a", encoding="utf-8"):
+                pass
+            probe.unlink(missing_ok=True)
+            return candidate
+        except OSError:
+            continue
+
+    return None
+
+
+LOGS_DIR = resolve_logs_dir()
+if LOGS_DIR is None:
+    log.warning("No writable log directory found. Session logging is disabled.")
+else:
+    log.info("Session logs directory: %s", LOGS_DIR)
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "").strip()
 GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/models"
@@ -231,13 +262,20 @@ def save_history(h: list):
     session["history"] = h[-6:]
 
 def append_log(sid: str, user: str, assistant: str):
+    if LOGS_DIR is None:
+        return
+
     entry = {
         "ts": datetime.utcnow().isoformat() + "Z",
         "user": user,
         "assistant": assistant,
     }
-    with open(LOGS_DIR / f"{sid}.jsonl", "a", encoding="utf-8") as f:
-        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+    try:
+        with open(LOGS_DIR / f"{sid}.jsonl", "a", encoding="utf-8") as f:
+            f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+    except OSError as e:
+        # Logging must never break chat responses in read-only or restricted runtimes.
+        log.warning("Could not write session log for %s: %s", sid, e)
 
 # ══════════════════════════════════════════════════════════════════════════════
 # Routes
@@ -300,12 +338,18 @@ def api_history():
 
 @app.route("/api/logs")
 def api_logs():
+    if LOGS_DIR is None:
+        return jsonify({"sessions": []})
+
     files = sorted(p.stem for p in LOGS_DIR.glob("*.jsonl"))
     return jsonify({"sessions": files})
 
 
 @app.route("/api/logs/<sid>")
 def api_log_detail(sid):
+    if LOGS_DIR is None:
+        return jsonify({"error": "Logging unavailable"}), 404
+
     safe = sid.replace("/", "").replace("..", "")
     path = LOGS_DIR / f"{safe}.jsonl"
     if not path.exists():
